@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { Outlet } from "react-router";
+import { Link } from "react-router";
+import Navimg from "../assets/nav/NavLogo-img.png"
+
+
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -8,38 +12,47 @@ export default function Navbar() {
     <div>
       <nav className="bg-white  shadow-sm">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 font-sans">
           
           {/* Logo */}
-          <div className="text-xl font-bold">LOGO</div>
+          <div className="text-md font-bold flex items-center">
+            <img src={Navimg} alt="Foodzy Logo" className="h-10 w-10" />
+            <p>Foodzy </p>
+          </div>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex items-center space-x-6 text-gray-700 font-medium">
-            <li className="hover:text-black cursor-pointer">Home</li>
+          <ul className="hidden md:flex items-center space-x-6 text-black font-medium">
+            <Link to={"/home"} className="hover:text-black cursor-pointer">Home</Link>
 
             <li className="relative group cursor-pointer">
-              <span>Category ▾</span>
-              <ul className="absolute hidden group-hover:block bg-white shadow-md mt-2 py-2 w-40">
-                <li className="px-4 py-2 hover:bg-gray-100">Category 1</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Category 2</li>
+              <Link to={"/Category"} >
+              <span className="pb-2">Category ▾</span>
+              <ul className="absolute hidden group-hover:block bg-white shadow-md  py-6 w-40">
+                
+                <li className="px-4 py-2 hover:bg-gray-100" ><Link to={"/category/category1"} > Category 1 </Link></li>
+                <li className="px-4 py-2 hover:bg-gray-100"><Link to={"/category/category2"} > Category 2 </Link></li>
+              
               </ul>
+            </Link>
             </li>
 
             <li className="relative group cursor-pointer">
+              <Link to={"/products"} >
               <span>Products ▾</span>
-              <ul className="absolute hidden group-hover:block bg-white shadow-md mt-2 py-2 w-40">
-                <li className="px-4 py-2 hover:bg-gray-100">Product 1</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Product 2</li>
+              <ul className="absolute hidden group-hover:block bg-white shadow-md  py-6 w-40">
+                <li className="px-4 py-2 hover:bg-gray-100"><Link to={"/products/product1"}>Product 1</Link></li>
+                <li className="px-4 py-2 hover:bg-gray-100"><Link to={"/products/product2"}>Product 2</Link></li>
               </ul>
+              </Link>
             </li>
 
-            <li className="hover:text-black cursor-pointer">Pages ▾</li>
-            <li className="hover:text-black cursor-pointer">Blog ▾</li>
-            <li className="hover:text-black cursor-pointer">Elements ▾</li>
+            <li className="hover:text-black cursor-pointer"><Link to={"/pages"}>Pages</Link> ▾</li>
+            <li className="hover:text-black cursor-pointer"><Link to={"/blog"}>Blog</Link></li>
+            <li className="hover:text-black cursor-pointer"><Link to={"/elements"}>Elements ▾</Link></li>
           </ul>
 
           {/* Phone Number */}
-          <div className="hidden md:flex items-center gap-2 text-gray-700 font-semibold">
+          <div className="hidden md:flex items-center gap-2 text-black font-semibold">
             📞 +123 (456) 7890
           </div>
 
