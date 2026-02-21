@@ -1,9 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import {collection,getDocs} from 'firebase/firestore'
+import {db} from '../../firebaseConfig'
 
 
-export default function productList() {
+export default function ProductList() {
+
 
   const [products, setProducts] = useState([])
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const productsCollection = await getDocs(collection(db, 'products')) ;
+      const data = productsCollection.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      setProducts(data)
+     
+    }
+    fetchProducts()
+    
+  }, [])
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       
