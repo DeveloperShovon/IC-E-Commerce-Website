@@ -1,39 +1,17 @@
-import { useEffect, useState } from 'react'
-import {collection,getDocs} from 'firebase/firestore'
-import {db} from '../../firebaseConfig'
 
-
-export default function ProductList() {
-
-
-  const [products, setProducts] = useState([])
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const productsCollection = await getDocs(collection(db, 'products')) ;
-      const data = productsCollection.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      setProducts(data)
-     
-    }
-    fetchProducts()
-    
-  }, [])
+export default function ProductList({ products }) {
+  
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         
         {products.map((product) => (
           <div
             key={product.id}
             className="relative bg-white rounded-xl p-4 shadow-lg hover:shadow-lg transition duration-300"
           >
-            {/* Badge */}
-            {/* <span className="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded">
-              {product.badge}
-            </span> */}
-
-            {/* Image */}
             <div className="flex justify-center mb-4">
               <img
                 src={product.image}
@@ -56,7 +34,7 @@ export default function ProductList() {
             <div className="flex items-center justify-between mb-3">
               <div>
                 <span className="text-green-600 font-bold">
-                  {product.price}
+                  {product.price}$
                 </span>
                 <span className="text-gray-400 line-through ml-2 text-sm">
                   {product.oldPrice}

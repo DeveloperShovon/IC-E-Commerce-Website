@@ -1,5 +1,5 @@
 import React from 'react'
-import Banner from "./Homepage/bannar"
+import Banner from "../component/Homepage/bannar"
 
 export default function Home() {
   return (
