@@ -1,6 +1,7 @@
 
+import Cart from "../../pages/Cart"
 export default function ProductList({ products }) {
-  
+  <Cart products={products}/>
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       
@@ -43,13 +44,18 @@ export default function ProductList({ products }) {
             </div>
 
             {/* Add Button */}
-            <button className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-sm transition">
+            
+            <button onClick={(e)=> {}} className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-sm transition">
               Add
             </button>
+            
+           
           </div>
         ))}
 
       </div>
+      
     </div>
+    
   )
 }

@@ -5,6 +5,7 @@ import Navimg from "../assets/nav/NavLogo-img.png"
 
 
 
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
@@ -22,11 +23,11 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex items-center space-x-6 text-black font-medium">
-            <Link to={"/home"} className="hover:text-black cursor-pointer">Home</Link>
+            <Link to={"/home"} className="hover:text-red-500 cursor-pointer ">Home</Link>
 
             <li className="relative group cursor-pointer">
               <Link to={"/Category"} >
-              <span className="pb-2">Category ▾</span>
+              <span className="pb-2 hover:text-red-500">Category ▾</span>
               <ul className="absolute hidden group-hover:block bg-white shadow-md  py-6 w-40">
                 
                 <li className="px-4 py-2 hover:bg-gray-100" ><Link to={"/category/category1"} > Category 1 </Link></li>
@@ -38,7 +39,7 @@ export default function Navbar() {
 
             <li className="relative group cursor-pointer">
               <Link to={"/products"} >
-              <span>Products ▾</span>
+              <span className="hover:text-red-500">Products ▾</span>
               <ul className="absolute hidden group-hover:block bg-white shadow-md  py-6 w-40">
                 <li className="px-4 py-2 hover:bg-gray-100"><Link to={"/products/product1"}>Product 1</Link></li>
                 <li className="px-4 py-2 hover:bg-gray-100"><Link to={"/products/product2"}>Product 2</Link></li>
@@ -46,14 +47,32 @@ export default function Navbar() {
               </Link>
             </li>
 
-            <li className="hover:text-black cursor-pointer"><Link to={"/pages"}>Pages</Link> ▾</li>
-            <li className="hover:text-black cursor-pointer"><Link to={"/blog"}>Blog</Link></li>
-            <li className="hover:text-black cursor-pointer"><Link to={"/elements"}>Elements ▾</Link></li>
+            <li className="hover:text-red-500  cursor-pointer"><Link to={"/pages"}>Pages</Link> ▾</li>
+            <li className="hover:text-red-500 cursor-pointer"><Link to={"/blog"}>Blog</Link></li>
+            <li className="hover:text-red-500 cursor-pointer"><Link to={"/products/cart"}>Cart</Link></li>
           </ul>
 
           {/* Phone Number */}
           <div className="hidden md:flex items-center gap-2 text-black font-semibold">
-            📞 +123 (456) 7890
+           <div className="p-2 flex items-center gap-1">
+            <img src="https://laibkvorwdxzsasecdbs.supabase.co/storage/v1/object/public/allProducts/logo/shipping.png" alt="" />
+            <Link to={"/cart"} className="hover:text-black cursor-pointer">
+            <p>Cart</p>
+            </Link>
+            </div>
+           <div className="p-2 flex items-center gap-1">
+            <img src="https://laibkvorwdxzsasecdbs.supabase.co/storage/v1/object/public/allProducts/logo/love.png" alt="" />
+            <Link to={"/wishlist"} className="hover:text-black cursor-pointer">
+            <p>Wishlist</p>
+            </Link>
+             </div>
+           <div className="p-2 flex items-center gap-1 ">
+            <img src="https://laibkvorwdxzsasecdbs.supabase.co/storage/v1/object/public/allProducts/logo/user.png" alt="" />
+            <Link to={"/login"} className="hover:text-black cursor-pointer">
+            <p>Login</p>
+            </Link>
+             </div>
+            <div>📞 +123 (456) 7890</div>
           </div>
 
           {/* Mobile Button */}
