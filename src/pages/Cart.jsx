@@ -1,11 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../features/cartSlice";
+import CartItem from "../component/Cart/CartItem";
 
 
-const Cart = ({products}) => {
-    
-  // ডাইনামিক ডাটা সিমুলেশন
- 
-  console.log(products);
-
+const Cart = () => {
+  const product = useSelector((state)=>state.cart)  ;
+  const dispatch = useDispatch();
+  let totalPrice = 0;
+  product.forEach((p) => (totalPrice += p.quentity * p.price));
+  
   return (
     <div className="p-8 bg-white font-sans">
       <table className="w-full text-left border-collapse">
@@ -20,19 +23,21 @@ const Cart = ({products}) => {
           </tr>
         </thead>
         <tbody>
-            <cartItem/>
+           {product.map((product) => (
+            <CartItem product={product} key={product.id}/>
+           ))}
         </tbody>
       </table>
 
       {/* নিচের টোটাল সেকশন */}
       <div className="mt-10 text-center">
         <h2 className="text-xl font-semibold italic">
-          You Total Price Will be ${}
+          You Total Price Will be ${totalPrice}
         </h2>
       </div>
 
       <div className="mt-10">
-        <button className="text-gray-700 font-medium hover:underline">
+        <button onClick={()=>dispatch(clearCart()) } className="text-gray-700 font-medium hover:underline">
           Clear Cart
         </button>
       </div>
