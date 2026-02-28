@@ -6,20 +6,20 @@ import CartItem from "../component/Cart/CartItem";
 const Cart = () => {
   const product = useSelector((state)=>state.cart)  ;
   const dispatch = useDispatch();
-  let totalPrice = 0;
-  product.forEach((p) => (totalPrice += p.quentity * p.price));
+ 
+  
   
   return (
     <div className="p-8 bg-white font-sans">
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="text-gray-600 border-b">
-            <th className="py-4 px-2">Image</th>
-            <th className="py-4 px-2">PRODUCT Title</th>
-            <th className="py-4 px-2">Price</th>
-            <th className="py-4 px-2 text-center">Quantity</th>
-            <th className="py-4 px-2">Subtotal</th>
-            <th className="py-4 px-2">Action</th>
+            <th className="py-4 px-2 text-center text-sm md:text-base lg:text-lg">Image</th>
+            <th className="py-4 px-2 text-center text-sm md:text-base lg:text-lg">Product Title</th>
+            <th className="py-4 px-2 text-center text-sm md:text-base lg:text-lg">Price</th>
+            <th className="py-4 px-2 text-center text-sm md:text-base lg:text-lg">Quantity</th>
+            <th className="py-4 px-2 text-center text-sm md:text-base lg:text-lg">Subtotal</th>
+            <th className="py-4 px-2 text-center text-sm md:text-base lg:text-lg">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -30,11 +30,7 @@ const Cart = () => {
       </table>
 
       {/* নিচের টোটাল সেকশন */}
-      <div className="mt-10 text-center">
-        <h2 className="text-xl font-semibold italic">
-          You Total Price Will be ${totalPrice}
-        </h2>
-      </div>
+          
 
       <div className="mt-10">
         <button onClick={()=>dispatch(clearCart()) } className="text-gray-700 font-medium hover:underline">
