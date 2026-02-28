@@ -10,10 +10,11 @@ const cartSlice = createSlice({
             product ? product.quantity++ : state.push({ ...action.payload, quantity: 1 })
         },
         removeItemfromCart(state, action) {
-            return state.filter((product) => product.id == !action.payload.id)
+            // action.payload = id
+            return state.filter((product) => product.id !== action.payload)
         },
         clearCart() {
-            return []
+            return []   
         },
         modifyQuantity(state, action) {
             // {id:1 , quentity:1}
