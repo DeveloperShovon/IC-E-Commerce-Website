@@ -5,14 +5,19 @@ import { supabase } from "../createClint";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   // Fetch products from Supabase
   async function fetchPost() {
+    setLoading(true);
     const { data, error } = await supabase.from("products").select("*");
     if (error) {
       console.error("Error fetching products:", error);
-    } else {
+    } 
+    else {
       setProducts(data);
+      setLoading(false);
     }
+    
   }
 
   useEffect(() => {
@@ -30,6 +35,10 @@ export default function Products() {
       <div>
         <ProductList products={products} />
       </div>
+      {loading && <div className="flex justify-center items-center h-screen">
+      <div className="w-10 h-10 border-4 border-gray-300 border-t-indigo-600 rounded-full animate-spin">;
+      </div>
+    </div>}
     </div>
   );
 }

@@ -68,8 +68,8 @@ export default function Navbar() {
              </div>
            <div className="p-2 flex items-center gap-1 ">
             <img src="https://laibkvorwdxzsasecdbs.supabase.co/storage/v1/object/public/allProducts/logo/user.png" alt="" />
-            <Link to={"/login"} className="hover:text-black cursor-pointer">
-            <p>Login</p>
+            <Link to={"/register"} className="hover:text-black cursor-pointer">
+            <p>Register</p>
             </Link>
              </div>
             <div>📞 +123 (456) 7890</div>
