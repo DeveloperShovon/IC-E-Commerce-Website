@@ -1,53 +1,63 @@
-import React, { useState } from "react";
-import {auth} from "../firebase"
+import { useState } from "react";
+import { auth, db } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 export default function SignUp() {
-  const [user , setUser] = useState({
+  const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
-  })
-  const [isCompleated , setIsCompleted] = useState(false)
-  const [error , setError] = useState("")
+  });
+  const [isCompleated, setIsCompleted] = useState(false);
+  const [error, setError] = useState("");
 
   // handle change
   const handleChange = (e) => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
-    })
-  }
-  // handle submit
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-    setIsCompleted(false)
-     await createUserWithEmailAndPassword(auth , user.email , user.password)
-      .then(() => {
-        setIsCompleted(true)
-       
-      })
-      .catch((error) => {
-        setError(error.message)
-      })
-    
-
-    
+    });
   };
-  console.log(user)
+  
+  // handle submit
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+   
+      try {
+        await createUserWithEmailAndPassword(auth, user.email, user.password)
+        await setDoc( doc(db, "users", auth.currentUser.uid),{
+          name: user.name,
+          email: user.email,
+          role: "user",
+        })
+        setIsCompleted(true);
+        setError("");
+        setUser({
+          name: "",
+          email:"",
+          password:""
+        })
+        
+      } catch (error) {
+        setError(error.message);
+        setIsCompleted(false);
+      }
+      
+      
+  };
+  console.log(user);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200">
       <div className="bg-white shadow-md rounded-md p-8 w-full max-w-md">
-        
         <h2 className="text-2xl font-semibold text-center mb-1">Sign up</h2>
         <p className="text-center text-gray-500 text-sm mb-6">
           Sign up to continue
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          
           {/* Name */}
           <div>
             <input
@@ -85,23 +95,20 @@ export default function SignUp() {
           </div>
           <div>
             {isCompleated && <p className="text-green-500 text-sm">Sign up successful!</p>}
-            {!isCompleated &&  <button
-            type="submit"
-            className="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
-          >
-            Sign up
-          </button>}
+            
+            
+            {!isCompleated && <button
+                type="submit"className="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition">Sign up</button>}
+
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
           </div>
           {/* Button */}
-          
 
           {/* Remember Me */}
           <div className="flex items-center text-sm">
             <input type="checkbox" className="mr-2" />
             <label>Remember me</label>
           </div>
-
         </form>
       </div>
     </div>
