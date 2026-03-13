@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { auth, db } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { supabase } from "../createClint";
 
 export default function SignUp() {
   const [user, setUser] = useState({
@@ -9,7 +7,7 @@ export default function SignUp() {
     email: "",
     password: "",
   });
-  const [isCompleated, setIsCompleted] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
   // handle change
@@ -19,35 +17,41 @@ export default function SignUp() {
       [e.target.name]: e.target.value,
     });
   };
-  
+
   // handle submit
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-   
-      try {
-        await createUserWithEmailAndPassword(auth, user.email, user.password)
-        await setDoc( doc(db, "users", auth.currentUser.uid),{
-          name: user.name,
-          email: user.email,
-          role: "user",
-        })
-        setIsCompleted(true);
-        setError("");
-        setUser({
-          name: "",
-          email:"",
-          password:""
-        })
-        
-      } catch (error) {
-        setError(error.message);
-        setIsCompleted(false);
+  e.preventDefault();
+
+  setError("");
+
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email: user.email,
+      password: user.password,
+      options: {
+        data: {
+          name: user.name
+        }
       }
-      
-      
-  };
-  console.log(user);
+    });
+
+    if (error) {
+      setError(error.message);
+      setSuccess(false);
+    } else {
+      setSuccess(true);
+      setUser({
+        name:"",
+        password:"",
+        email:""
+      })
+    }
+
+  } catch (err) {
+    setError("Something went wrong");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200">
@@ -93,18 +97,32 @@ export default function SignUp() {
               className="w-full border-b border-gray-300 focus:outline-none focus:border-blue-500 py-2"
             />
           </div>
-          <div>
-            {isCompleated && <p className="text-green-500 text-sm">Sign up successful!</p>}
-            
-            
-            {!isCompleated && <button
-                type="submit"className="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition">Sign up</button>}
+          <div className="">
+            {success ? (
+              <p style={{ color: "green" }}>Login Successfully</p>
+            ) : (
+              <>
+                {error && <p style={{ color: "red" }}>{error}</p>}
+                <button className="p-2 bg-orange-200 rounded text-sm px-3" type="submit">Sign Up</button>
+              </>
+            )}
+          </div>
+          {/* <div>
+            {Loading && (
+              <p>SignUp successfully</p>)}
+
+            {!Loading && (
+              <button
+                type="submit"
+                className="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
+              >
+                Sign up
+              </button>
+            )}
 
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-          </div>
-          {/* Button */}
+          </div> */}
 
-          {/* Remember Me */}
           <div className="flex items-center text-sm">
             <input type="checkbox" className="mr-2" />
             <label>Remember me</label>
