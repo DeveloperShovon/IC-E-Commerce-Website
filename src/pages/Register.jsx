@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { supabase } from "../createClint";
 
+import { useNavigate } from "react-router";
+
 export default function SignUp() {
+
+ const navigate = useNavigate()
+
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -26,7 +31,7 @@ export default function SignUp() {
   setError("");
 
   try {
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email: user.email,
       password: user.password,
       options: {
@@ -39,6 +44,7 @@ export default function SignUp() {
     if (error) {
       setError(error.message);
       setSuccess(false);
+      
     } else {
       setSuccess(true);
       setUser({
@@ -46,10 +52,11 @@ export default function SignUp() {
         password:"",
         email:""
       })
+      navigate("/login");
     }
 
-  } catch (err) {
-    setError("Something went wrong");
+  } catch  {
+    console.log(error)
   }
 };
 
@@ -97,35 +104,28 @@ export default function SignUp() {
               className="w-full border-b border-gray-300 focus:outline-none focus:border-blue-500 py-2"
             />
           </div>
-          <div className="">
+
+          <div className="flex items-center text-sm">
+            <input type="checkbox" className="mr-2" />
+            <label>Remember me</label>
+          </div>
+
+          <div className="flex flex-col justify-center ">
+             <div className=" flex justify-center flex-col space-y-3">
             {success ? (
               <p style={{ color: "green" }}>Login Successfully</p>
             ) : (
               <>
                 {error && <p style={{ color: "red" }}>{error}</p>}
-                <button className="p-2 bg-orange-200 rounded text-sm px-3" type="submit">Sign Up</button>
+                <button className="p-2 bg-orange-500 rounded text-sm px-3  text-amber-50" type="submit">Sign Up</button>
               </>
             )}
           </div>
-          {/* <div>
-            {Loading && (
-              <p>SignUp successfully</p>)}
 
-            {!Loading && (
-              <button
-                type="submit"
-                className="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
-              >
-                Sign up
-              </button>
-            )}
 
-            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-          </div> */}
-
-          <div className="flex items-center text-sm">
-            <input type="checkbox" className="mr-2" />
-            <label>Remember me</label>
+          <div>
+            <p className=" flex justify-center m-5">Already have an account ? <span onClick={() => navigate("/login")} className=" text-orange-600  font-bold pl-2 cursor-pointer"> Login Up</span></p>
+          </div>
           </div>
         </form>
       </div>

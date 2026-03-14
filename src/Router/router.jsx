@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Navber from "../pages/Navbar"
 import Cart from "../pages/Cart";
 import Register from "../pages/Register";
+import Login from "../pages/Login";
 
 
 export const rootRouter = createBrowserRouter([
@@ -17,6 +18,7 @@ export const rootRouter = createBrowserRouter([
       {path: "/products", element: <Products/>, },
       {path: "/products/cart", element: <Cart/>},
       {path: "/register", element: <Register/>},
+       {path: "/login", element: <Login/>}
     
   ]},
   
