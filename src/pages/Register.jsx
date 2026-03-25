@@ -4,8 +4,7 @@ import { supabase } from "../createClint";
 import { useNavigate } from "react-router";
 
 export default function SignUp() {
-
- const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     name: "",
@@ -26,39 +25,48 @@ export default function SignUp() {
   // handle submit
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  setError("");
+    setError("");
 
-  try {
-    const { error } = await supabase.auth.signUp({
-      email: user.email,
-      password: user.password,
-      options: {
-        data: {
-          name: user.name
-        }
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: user.email,
+        password: user.password,
+        options: {
+          data: {
+            name: user.name,
+          },
+        },
+      });
+      console.log(user.user);
+      if (data.user) {
+        await supabase.from("users").insert([
+          {
+            uuid: data.user.id, 
+            email: data.user.email,
+            name: user.name,
+            position:"User"
+          },
+        ]);
       }
-    });
 
-    if (error) {
-      setError(error.message);
-      setSuccess(false);
-      
-    } else {
-      setSuccess(true);
-      setUser({
-        name:"",
-        password:"",
-        email:""
-      })
-      navigate("/login");
+      if (error) {
+        setError(error.message);
+        setSuccess(false);
+      } else {
+        setSuccess(true);
+        setUser({
+          name: "",
+          password: "",
+          email: "",
+        });
+        navigate("/login");
+      }
+    } catch {
+      console.log(error);
     }
-
-  } catch  {
-    console.log(error)
-  }
-};
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200">
@@ -111,21 +119,31 @@ export default function SignUp() {
           </div>
 
           <div className="flex flex-col justify-center ">
-             <div className=" flex justify-center flex-col space-y-3">
-            {success ? (
-              <p style={{ color: "green" }}>Login Successfully</p>
-            ) : (
-              <>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                <button className="p-2 bg-orange-500 rounded text-sm px-3  text-amber-50" type="submit">Sign Up</button>
-              </>
-            )}
-          </div>
+            <div className=" flex justify-center flex-col space-y-3">
+              {success ?
+                <p style={{ color: "green" }}>Login Successfully</p>
+              : <>
+                  {error && <p style={{ color: "red" }}>{error}</p>}
+                  <button
+                    className="p-2 bg-orange-500 rounded text-sm px-3  text-amber-50"
+                    type="submit">
+                    Sign Up
+                  </button>
+                </>
+              }
+            </div>
 
-
-          <div>
-            <p className=" flex justify-center m-5">Already have an account ? <span onClick={() => navigate("/login")} className=" text-orange-600  font-bold pl-2 cursor-pointer"> Login Up</span></p>
-          </div>
+            <div>
+              <p className=" flex justify-center m-5">
+                Already have an account ?{" "}
+                <span
+                  onClick={() => navigate("/login")}
+                  className=" text-orange-600  font-bold pl-2 cursor-pointer">
+                  {" "}
+                  Login Up
+                </span>
+              </p>
+            </div>
           </div>
         </form>
       </div>
