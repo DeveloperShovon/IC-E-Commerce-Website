@@ -1,0 +1,63 @@
+import { createContext, useContext, useEffect, useState } from 'react';
+import { supabase } from '../supabaseClient'; // আপনার সুপাবেস ক্লায়েন্ট পাথ
+
+const AuthContext = createContext({});
+
+export const AuthProvider = ({ children }) => {
+const [user, setUser] = useState(null); // Auth user data
+const [profile, setProfile] = useState(null); // Your 'users' table data
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+// ১. শুরুতে বর্তমান সেশন চেক করা
+const getInitialSession = async () => {
+const { data: { session } } = await supabase.auth.getSession();
+if (session) {
+setUser(session.user);
+await fetchProfile(session.user.id);
+}
+setLoading(false);
+};
+
+getInitialSession();
+
+// ২. সেশন চেঞ্জ (Login/Logout) মনিটর করা
+const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+if (session) {
+setUser(session.user);
+await fetchProfile(session.user.id);
+} else {
+setUser(null);
+setProfile(null);
+}
+setLoading(false);
+});
+
+return () => {
+authListener.subscription.unsubscribe();
+};
+}, []);
+
+// আপনার 'users' টেবিল থেকে অতিরিক্ত ডেটা (নাম, ছবি ইত্যাদি) আনার ফাংশন
+const fetchProfile = async (userId) => {
+const { data, error } = await supabase
+.from('users')
+.select('*')
+.eq('id', userId)
+.single();
+
+if (!error) setProfile(data);
+};
+
+// লগআউট ফাংশন
+const signOut = () => supabase.auth.signOut();
+
+return (
+<AuthContext.Provider value={{ user, profile, signOut, loading }}>
+{!loading && children}
+</AuthContext.Provider>
+);
+};
+
+// কাস্টম হুক যাতে সহজে ইউজ করা যায়
+export const useAuth = () => useContext(AuthContext);

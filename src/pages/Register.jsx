@@ -14,6 +14,8 @@ export default function SignUp() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
+
+
   // handle change
   const handleChange = (e) => {
     setUser({

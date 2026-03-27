@@ -5,6 +5,8 @@ import Navber from "../pages/Navbar"
 import Cart from "../pages/Cart";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import Test from "../pages/Test";
+
 
 
 export const rootRouter = createBrowserRouter([
@@ -15,10 +17,11 @@ export const rootRouter = createBrowserRouter([
       {path: "/category", element: <h1>Category</h1> , children: [
         {index:true ,path: "/category/category1", element: <h1>Category 1</h1>},
       ]},
-      {path: "/products", element: <Products/>, },
+      {path: "/products", element:<Products/>, },
       {path: "/products/cart", element: <Cart/>},
       {path: "/register", element: <Register/>},
-       {path: "/login", element: <Login/>}
+       {path: "/login", element: <Login/>},
+       {path:"/test", element: <Test/>}
     
   ]},
   
