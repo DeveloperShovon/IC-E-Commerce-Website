@@ -1,8 +1,8 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext,useEffect, useState } from "react";
 import { supabase } from "../createClint";
 
 
- const AuthContext = createContext()
+export const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
   const [currentUser, setcurrentUser] = useState(null);
   const [profile, setProfile] = useState(null);
@@ -38,11 +38,14 @@ export const AuthProvider = ({ children }) => {
     initialSession();
   }, []);
 
+   const logout = supabase.auth.signOut()
+
   const value = {
     currentUser,
     profile,
     isLogin,
     loading,
+    logout
   };
 
   return(
@@ -52,6 +55,5 @@ export const AuthProvider = ({ children }) => {
   
  
 };
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
+
+

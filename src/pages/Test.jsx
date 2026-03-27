@@ -1,19 +1,18 @@
-import { useAuth } from "../contexts/authContext";
+import React, { useContext } from "react";
+import { AuthContext } from "../contexts/authContext";
 
-export default function PrivateRouter({ children }) {
-    // সরাসরি useAuth ব্যবহার করুন, ঝামেলা শেষ!
-    const { currentUser, loading } = useAuth();
+export default function Test() {
+  const { currentUser, profile, isLogin, loading  } = useContext(AuthContext);
+  console.log("if user login",isLogin);
+  console.log("user profile",profile);
+  console.log("my current User" , currentUser);
+  console.log("loading" , loading)
 
-    if (loading) return <h1>Loading...</h1>;
+  
 
-    if (!currentUser) {
-        return <h1>Login Required</h1>;
-    }
-
-    return (
-        <div>
-            <h1>Welcome, {currentUser.email}</h1>
-            {children}
-        </div>
-    );
+  return (
+    <div>
+      <h1>Hay MC context </h1>
+    </div>
+  );
 }

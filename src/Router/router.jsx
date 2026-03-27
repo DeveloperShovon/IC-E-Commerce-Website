@@ -6,11 +6,13 @@ import Cart from "../pages/Cart";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Test from "../pages/Test";
+import { AuthProvider } from "../contexts/authContext";
+
 
 
 
 export const rootRouter = createBrowserRouter([
-  {path: "/", element: <Navber/> , children: [
+  {path: "/", element:<AuthProvider><Navber/></AuthProvider>  , children: [
     
       {index:true , path: "/", element: <Home />},
       {path: "/home", element: <Home />},
