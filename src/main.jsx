@@ -2,14 +2,19 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
-import { RouterProvider } from 'react-router'
-import { rootRouter } from './Router/router.jsx'
+
 import { Provider } from 'react-redux'
 import store from './App/store.js'
+import { AuthProvider } from './contexts/authContext.jsx'
+import { Router } from './Router/router.jsx'
+import { BrowserRouter } from 'react-router'
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <RouterProvider router={rootRouter} />
+    <AuthProvider>
+      <BrowserRouter>
+      <Router />
+      </BrowserRouter>
+    </AuthProvider>
   </Provider>
-  
 )

@@ -1,9 +1,10 @@
-import { createContext,useEffect, useState } from "react";
+import { createContext ,useEffect, useState } from "react";
 import { supabase } from "../createClint";
 
 
 export const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
+  
   const [currentUser, setcurrentUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [isLogin, setIslogin] = useState(false);
@@ -11,9 +12,8 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const initialSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+      const { data: { session }} = await supabase.auth.getSession();
+       console.log(session);
       if (session) {
         setcurrentUser(session.user);
         setIslogin(true);
@@ -22,17 +22,21 @@ export const AuthProvider = ({ children }) => {
         setcurrentUser(null);
         setIslogin(false);
       }
+      console.log(currentUser)
 
-      const { data: mydata } = await supabase
+     if(session && session.user){
+       const { data: mydata } = await supabase
         .from("users")
         .select("name , email, position")
         .eq("uuid", session.user.id)
         .single();
-      if (mydata) {
+        if (mydata) {
         setProfile(mydata);
       } else {
         setLoading(false);
       }
+     }
+      
       setLoading(false);
     };
     initialSession();
