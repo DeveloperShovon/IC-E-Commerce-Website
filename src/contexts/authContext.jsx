@@ -1,9 +1,21 @@
-import { createContext ,useEffect, useState } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { createContext ,useContext,useEffect, useState } from "react";
 import { supabase } from "../createClint";
 
 
-export const AuthContext = createContext()
+ const AuthContext = createContext()
+
+ export const useAuth = () => {
+  return useContext(AuthContext)
+ }
+
 export const AuthProvider = ({ children }) => {
+
+  // const profile= {
+  //   name: "John Doe",
+  //   email: "john.doe@example.com",
+  //   position: "User"
+  // }
   
   const [currentUser, setcurrentUser] = useState(null);
   const [profile, setProfile] = useState(null);
@@ -13,7 +25,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const initialSession = async () => {
       const { data: { session }} = await supabase.auth.getSession();
-       console.log(session);
+      
       if (session) {
         setcurrentUser(session.user);
         setIslogin(true);
@@ -40,6 +52,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     };
     initialSession();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
    const logout = supabase.auth.signOut()

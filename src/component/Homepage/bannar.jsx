@@ -2,7 +2,7 @@ export default function Banner({ imgUrl, subtitle, title, rightContent }) {
   return (
     <div className="w-full ">
       <section
-        className=" grid grid-cols-1   items-center py-6 md:p-12 w-full bg-cover  bg-no-repeat"
+        className=" grid grid-cols-1   items-center py-4 md:p-12 w-full bg-cover  bg-no-repeat"
         style={{ backgroundImage: `url('${imgUrl}')` }}
         >
       

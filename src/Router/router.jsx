@@ -5,7 +5,8 @@ import Navber from "../pages/Navbar"
 import Cart from "../pages/Cart";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-// import Test from "../pages/Test";
+import Test from "../pages/Test";
+import ContextChecker from "../pages/ContextChecker";
 
 export function Router() {
   return (
@@ -20,7 +21,8 @@ export function Router() {
         <Route path="products/cart" element={<Cart/>}/>
         <Route path="register" element={<Register/>}/>
         <Route path="login" element={<Login/>}/>
-        {/* <Route path="test" element={<Test/>}/> */}
+        <Route path="test" element={<Test/>}/>
+        <Route path="/checker" element={<ContextChecker/>}/>
       </Route>
     </Routes>
   )

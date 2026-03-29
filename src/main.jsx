@@ -5,9 +5,10 @@ import './index.css'
 
 import { Provider } from 'react-redux'
 import store from './App/store.js'
-import { AuthProvider } from './contexts/authContext.jsx'
+// import { AuthProvider } from './contexts/authContext.jsx'
 import { Router } from './Router/router.jsx'
 import { BrowserRouter } from 'react-router'
+import { AuthProvider } from './contexts/authContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>

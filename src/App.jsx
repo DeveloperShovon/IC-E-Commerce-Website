@@ -4,11 +4,11 @@ import { Router } from "./Router/router.jsx";
 
 function App() {
   return (
-    <AuthProvider>
+    
       <BrowserRouter>
         <Router />
       </BrowserRouter>
-    </AuthProvider>
+   
   );
 }
 

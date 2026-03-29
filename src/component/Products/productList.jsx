@@ -1,13 +1,40 @@
 import { useDispatch } from "react-redux"
 import { addToCart } from "../../features/cartSlice"
+import { useEffect, useState } from "react";
+import { supabase } from "../../createClint";
+import loadingSpin from "../Loading/loadingSpin";
 
 
-export default function ProductList({ products }) {
+
+export default function ProductList() {
+
    const dispatch = useDispatch()
+   const [products, setProducts] = useState([]);
+
+     const [loading, setLoading] = useState(true);
+     
+     async function fetchPost() {
+       setLoading(true);
+       const { data, error } = await supabase.from("products").select("*");
+       if (error) {
+         console.error("Error fetching products:", error);
+       } 
+       else {
+         setProducts(data);
+         setLoading(false);
+       }
+       
+     }
    
+     useEffect(() => {
+       fetchPost();
+     }, []);
+     console.log(loading);
 
   return (
+    
     <div className="max-w-7xl mx-auto px-4 py-10">
+      <loadingSpin loading={loading}/>
       
       {/* Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -49,7 +76,7 @@ export default function ProductList({ products }) {
 
             {/* Add Button */}
             
-            <button onClick={(e)=> dispatch(addToCart(product))} className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-sm transition">
+            <button onClick={()=> dispatch(addToCart(product))} className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-sm transition">
               Add
             </button>
             
@@ -58,8 +85,6 @@ export default function ProductList({ products }) {
         ))}
 
       </div>
-      
     </div>
-    
   )
 }
