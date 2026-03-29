@@ -13,6 +13,7 @@ export default function Home() {
         <section className="container mx-auto px-4">
         <PopularCategories/>
       </section>
+      
     </div>
   )
 }

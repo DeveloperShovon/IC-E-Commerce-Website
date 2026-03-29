@@ -28,16 +28,16 @@ export default function PopularCategories() {
       <h2 className="text-red-500 uppercase tracking-widest text-sm font-bold mb-2">
         Customer Favorites
       </h2>
-      <h2 className="text-3xl font-extrabold mb-10 text-gray-800">
+      <h2 className="text-3xl font-bold mb-10 text-gray-800">
         Popular Categories
       </h2>
        <loadingSpin loading={loading}/> 
-      <div className="flex flex-wrap justify-center gap-6 px-4">
+      <div className="flex flex-wrap justify-center gap-4 px-4 sm:px-6 lg:px-8">
         {categories && categories.length > 0 ? (
           categories.map((category) => (
             <div 
               key={category.id} 
-              className="w-48 p-6 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-50 flex flex-col items-center"
+              className="w-35 p-4 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-50 flex flex-col items-center sm:w-48 cursor-pointer  "
             >
               <div className="w-24 h-24 bg-yellow-50 rounded-full flex items-center justify-center mb-4">
                 <img 
@@ -46,7 +46,7 @@ export default function PopularCategories() {
                   className="w-16 h-16 object-contain"
                 />
               </div>
-              <h3 className="text-lg font-bold text-gray-900">{category.title}</h3>
+              <h3 className="text-sm font-bold sm:text-lg text-gray-900">{category.title}</h3>
               <p className="text-gray-500 text-sm italic">
                 ({category.title} title)
               </p>
