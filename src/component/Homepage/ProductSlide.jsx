@@ -29,8 +29,18 @@ export default function ProductSlide() {
     return (
         <>
             <Swiper
-                slidesPerView={4}
-                spaceBetween={20}
+                slidesPerView={2}
+                spaceBetween={10}
+                breakpoints={{
+                    600:{
+                        slidesPerView: 3,
+                        spaceBetween: 15,  
+                    },
+                     1024:{
+                        slidesPerView: 4,
+                        spaceBetween: 20,  
+                    }
+                }}
                 navigation={true}
                 pagination={{ type: 'fraction' }}
                  
@@ -59,10 +69,10 @@ export default function ProductSlide() {
                         {/* Price */}
                         <div className="flex items-center justify-between mb-3">
                             <div>
-                                <span className="text-green-600 font-bold">
+                                <span className="  text-green-600 font-bold">
                                     {item.price}$
                                 </span>
-                                <span className="text-gray-400 line-through ml-2 text-sm">
+                                <span className=" text-gray-400 line-through ml-2 text-sm">
                                     {item.oldPrice}
                                 </span>
                             </div>
