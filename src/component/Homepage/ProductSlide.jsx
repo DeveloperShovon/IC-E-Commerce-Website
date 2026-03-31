@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useDispatch } from "react-redux";
+import { addToCart } from "../../features/cartSlice";
 export default function ProductSlide() {
     const [product, setProduct] = useState([]);
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function ProductSlide() {
             const { data, error } = await supabase
                 .from("products")
                 .select("*")
-                .limit(10);
+                .limit(6);
             if (error) {
                 console.error("Error fetching products:", error);
             } else {
@@ -25,7 +26,7 @@ export default function ProductSlide() {
 
         fetchProduct();
     }, []);
-    console.log(product);
+    
     return (
         <>
             <Swiper
@@ -81,7 +82,7 @@ export default function ProductSlide() {
                         {/* Add Button */}
 
                         <button
-                            // onClick={() => dispatch({ type: "ADD_TO_CART", payload: item })}
+                            onClick={() => dispatch(addToCart(item))}
                             className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-sm transition">
                             Add
                         </button>

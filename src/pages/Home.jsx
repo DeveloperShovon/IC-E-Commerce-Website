@@ -1,6 +1,7 @@
 import Banner from "../component/Homepage/bannar";
 import DailyBestSells from "../component/Homepage/DailyBestSells";
 import PopularCategories from "../component/Homepage/PopularCategories";
+import SpecialDishes from "../component/Homepage/SpecialDishes";
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
       </section>
       <section className="max-w-7xl container mx-auto px-4">
         <DailyBestSells />
+      </section>
+       <section className="max-w-7xl container mx-auto px-4 py-10">
+        < SpecialDishes/>
       </section>
     </div>
   );
