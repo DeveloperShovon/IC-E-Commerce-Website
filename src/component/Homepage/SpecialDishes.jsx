@@ -32,7 +32,7 @@ export default function SpecialDishes() {
       [id]: !prev[id], //as like {1: true, 2: false} then click on 1 then it will be like {1: false, 2: false}
     }));
   };
-  console.log(likedProducts);
+  
 
   return (
     <div>
