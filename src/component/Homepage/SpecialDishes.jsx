@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../createClint";
 import { CiHeart } from "react-icons/ci";
-import { FaHeart } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';

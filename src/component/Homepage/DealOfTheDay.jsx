@@ -21,11 +21,11 @@ export default function DealOfTheDay() {
   return (
     <div>
       <div>
-        <h1>Deals Of The Day</h1>
-        <div>
-          <div className="grid grid-cols-1 justify-center md:grid-cols-2 lg:grid-cols-4 gap-15">
+        <h1 className="py-4 font-bold text-2xl text-gray-800">Deals Of The Day</h1>
+        <div  >
+          <div className="grid grid-cols-1 my-6 md:grid-cols-2 lg:grid-cols-4 gap-20">
             {deals.map((deal) => (
-              <div key={deal.id} className="relative w-[300px]">
+              <div key={deal.id} className="relative w-[300px] mx-auto">
                 {/* Image */}
                 <img
                   src={deal.image}
