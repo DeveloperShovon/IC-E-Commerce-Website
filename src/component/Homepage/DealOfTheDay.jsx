@@ -1,5 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import { supabase } from "../../createClint";
+import { addToCart } from "../../features/cartSlice";
+import { useDispatch } from "react-redux";
+
 
 export default function DealOfTheDay() {
   const [deals, setDeals] = React.useState([]);
@@ -17,6 +20,9 @@ export default function DealOfTheDay() {
     };
     fetchDeals();
   }, []);
+  const dispatch = useDispatch()
+  
+
   console.log(deals);
   return (
     <div>
@@ -57,7 +63,9 @@ export default function DealOfTheDay() {
                       </p>
                     </div>
 
-                    <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg text-sm">
+                    <button
+                    onClick={dispatch(addToCart(deal))} 
+                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg text-sm">
                       Add
                     </button>
                   </div>
