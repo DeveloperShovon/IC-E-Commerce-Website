@@ -16,7 +16,7 @@ export default function Products() {
         subtitle="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum, modi."
       />
       <div>
-        <ProductList />
+        <ProductList/>
       </div>      
       
     </div>

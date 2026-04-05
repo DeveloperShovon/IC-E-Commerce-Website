@@ -29,8 +29,6 @@ const Cart = () => {
            ))}
         </tbody>
       </table>
-
-      {/* নিচের টোটাল সেকশন */}
           
 
       <div className="mt-10">
