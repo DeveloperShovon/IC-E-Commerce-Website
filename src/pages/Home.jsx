@@ -2,6 +2,7 @@ import Banner from "../component/Homepage/bannar";
 import ChooseUs from "../component/Homepage/ChooseUs";
 import DailyBestSells from "../component/Homepage/DailyBestSells";
 import DealOfTheDay from "../component/Homepage/DealOfTheDay";
+import HeroSection from "../component/Homepage/HeroSection";
 import PopularCategories from "../component/Homepage/PopularCategories";
 import SpecialDishes from "../component/Homepage/SpecialDishes";
 
@@ -21,16 +22,20 @@ export default function Home() {
         <DailyBestSells />
       </section>
 
-       <section className="max-w-7xl container mx-auto  p-4">
-        < SpecialDishes/>
+      <section className="max-w-7xl container mx-auto  p-4">
+        <SpecialDishes />
       </section>
 
-       <section className="max-w-7xl container mx-auto  p-4">
-        <DealOfTheDay/>
+      <section className="max-w-7xl container mx-auto  p-4">
+        <DealOfTheDay />
       </section>
 
       <section className="max-w-6xl container mx-auto  p-4">
-        <ChooseUs/>
+        <ChooseUs />
+      </section>
+
+      <section className="max-w-7xl container mx-auto  p-4">
+        <HeroSection />
       </section>
     </div>
   );
