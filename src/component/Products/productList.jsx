@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux"
 import { addToCart } from "../../features/cartSlice"
 import { useEffect, useState } from "react";
 import { supabase } from "../../createClint";
-import loadingSpin from "../Loading/loadingSpin";
+
 
 
 

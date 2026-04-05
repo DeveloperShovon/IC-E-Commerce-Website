@@ -3,6 +3,7 @@ import { clearCart } from "../features/cartSlice";
 import CartItem from "../component/Cart/CartItem";
 
 
+
 const Cart = () => {
   const product = useSelector((state)=>state.cart)  ;
   const dispatch = useDispatch();
