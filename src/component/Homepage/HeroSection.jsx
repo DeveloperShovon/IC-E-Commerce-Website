@@ -5,7 +5,14 @@ export default function HeroSection() {
   return (
     <div className="py-10">
       <div>
-        <HeroFeatures />
+        <HeroFeatures 
+          bgColor="bg-green-100" 
+        deliveryImage={"https://laibkvorwdxzsasecdbs.supabase.co/storage/v1/object/public/Hero%20Section%20Img/banner-9.png.png"}
+        title="Explore Organic & Fresh Vegetables"
+        subtitle="Only at our organic section for"
+        highlightText="Daily Organic"
+        buttonText="Subscribe Now"
+        />
       </div>
 
       {/* Services Section */}
