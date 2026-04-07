@@ -56,7 +56,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-2 text-black font-semibold">
            <div className="p-2 flex items-center gap-1">
             <img src="https://laibkvorwdxzsasecdbs.supabase.co/storage/v1/object/public/allProducts/logo/shipping.png" alt="" />
-            <Link to={"/cart"} className="hover:text-black cursor-pointer">
+            <Link to={"products/cart"} className="hover:text-black cursor-pointer">
             <p>Cart</p>
             </Link>
             </div>
@@ -90,12 +90,13 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden px-4 pb-4 space-y-3 text-gray-700 font-medium">
-          <div>Home</div>
-          <div>Category</div>
-          <div>Products</div>
-          <div>Pages</div>
-          <div>Blog</div>
-          <div>Elements</div>
+          <div><Link to={"/home"}>Home</Link></div>
+          <div><Link to={"/category"}>Category</Link></div>
+          <div><Link to={"/products"}>Products</Link></div>
+          <div><Link to={"/pages"}>Pages</Link></div>
+          <div><Link to={"/blog"}>Blog</Link></div>
+          <div><Link to={"/elements"}>Elements</Link></div>
+          <div><Link to={"/register"}>Register</Link></div>
           <div className="pt-2 border-t font-semibold">
             📞 +123 (456) 7890
           </div>

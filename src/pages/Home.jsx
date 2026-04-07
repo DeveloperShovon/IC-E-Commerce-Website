@@ -2,6 +2,7 @@ import Banner from "../component/Homepage/bannar";
 import ChooseUs from "../component/Homepage/ChooseUs";
 import DailyBestSells from "../component/Homepage/DailyBestSells";
 import DealOfTheDay from "../component/Homepage/DealOfTheDay";
+import Footer from "../component/Homepage/Footer";
 import HeroSection from "../component/Homepage/HeroSection";
 import PopularCategories from "../component/Homepage/PopularCategories";
 import SpecialDishes from "../component/Homepage/SpecialDishes";
@@ -36,6 +37,9 @@ export default function Home() {
 
       <section className="max-w-7xl container mx-auto  p-4">
         <HeroSection />
+      </section>
+      <section>
+        <Footer/>
       </section>
     </div>
   );
