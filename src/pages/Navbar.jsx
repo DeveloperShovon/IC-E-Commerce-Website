@@ -25,17 +25,7 @@ export default function Navbar() {
           <ul className="hidden md:flex items-center space-x-6 text-black font-medium">
             <Link to={"/home"} className="hover:text-red-500 cursor-pointer ">Home</Link>
 
-            <li className="relative group cursor-pointer">
-              <Link to={"/Category"} >
-              <span className="pb-2 hover:text-red-500">Category ▾</span>
-              <ul className="absolute hidden group-hover:block bg-white shadow-md  py-6 w-40">
-                
-                <li className="px-4 py-2 hover:bg-gray-100" ><Link to={"/category/category1"} > Category 1 </Link></li>
-                <li className="px-4 py-2 hover:bg-gray-100"><Link to={"/category/category2"} > Category 2 </Link></li>
-              
-              </ul>
-            </Link>
-            </li>
+           
 
             <li className="relative group cursor-pointer">
               <Link to={"/products"} >
@@ -47,9 +37,8 @@ export default function Navbar() {
               </Link>
             </li>
 
-            <li className="hover:text-red-500  cursor-pointer"><Link to={"/pages"}>Pages</Link> ▾</li>
-            <li className="hover:text-red-500 cursor-pointer"><Link to={"/blog"}>Blog</Link></li>
             <li className="hover:text-red-500 cursor-pointer"><Link to={"/products/cart"}>Cart</Link></li>
+            <li className="hover:text-red-500 cursor-pointer"><Link to={"/add-product"}>Add Product</Link></li>
           </ul>
 
           {/* Phone Number */}
@@ -93,9 +82,7 @@ export default function Navbar() {
           <div><Link to={"/home"}>Home</Link></div>
           <div><Link to={"/category"}>Category</Link></div>
           <div><Link to={"/products"}>Products</Link></div>
-          <div><Link to={"/pages"}>Pages</Link></div>
-          <div><Link to={"/blog"}>Blog</Link></div>
-          <div><Link to={"/elements"}>Elements</Link></div>
+          <div><Link to={"/add-product"}>Add Product</Link></div>
           <div><Link to={"/register"}>Register</Link></div>
           <div className="pt-2 border-t font-semibold">
             📞 +123 (456) 7890

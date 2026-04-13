@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Test from "../pages/Test";
 import ContextChecker from "../pages/ContextChecker";
+import AddProduct from "../pages/AddProduct";
 
 export function Router() {
   return (
@@ -24,6 +25,7 @@ export function Router() {
         <Route path="test" element={<Test/>}/>
         <Route path="/checker" element={<ContextChecker/>}/>
       </Route>
+      <Route path="add-product" element={<AddProduct/>}/>
     </Routes>
   )
 }
