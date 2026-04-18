@@ -17,9 +17,9 @@ export const apiSlice = createApi({
 
     }),
 
-    addproduct: builder.mutation({
+    AddProduct: builder.mutation({
         queryFn: async (newProduct) => {
-          const { products, error } = await supabase.from("products").insert(newProduct);   
+          const { products, error } = await supabase.from("products").insert([newProduct]).select();   
             if (error) {
                 console.error("Error adding product:", error);
             }
@@ -28,6 +28,9 @@ export const apiSlice = createApi({
         
     }),
   }),
+
+
+
 });
 
 export const { useGetProductsQuery, useAddProductMutation } = apiSlice;
