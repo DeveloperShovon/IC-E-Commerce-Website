@@ -1,7 +1,7 @@
 import NavLogo from "../assets/nav/NavLogo-img.png";
 import { useState } from "react";
 import { useAddProductMutation } from "../features/apiSlice";
-import { Navigate, useNavigate , Link } from "react-router";
+import { Link } from "react-router";
 
 export default function AddProduct() {
 
@@ -39,7 +39,7 @@ const [product, setProduct] = useState({
       oldPrice: ""
     })
 
-    const Navigate = useNavigate()
+   
   }
 
 

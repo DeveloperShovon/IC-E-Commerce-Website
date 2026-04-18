@@ -2,6 +2,7 @@ import { useState } from "react";
 import { supabase } from "../createClint";
 
 import { useNavigate } from "react-router";
+import GlowBackground from "../assets/GlowBackground";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -71,10 +72,12 @@ export default function SignUp() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-200">
-      <div className="bg-white shadow-md rounded-md p-8 w-full max-w-md">
+
+    <GlowBackground>
+    <div className="min-h-screen flex items-center justify-center ">
+      <div className=" bg-transparent shadow-md rounded-md p-8 w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center mb-1">Sign up</h2>
-        <p className="text-center text-gray-500 text-sm mb-6">
+        <p className="text-center   text-gray-500 text-sm mb-6">
           Sign up to continue
         </p>
 
@@ -150,5 +153,6 @@ export default function SignUp() {
         </form>
       </div>
     </div>
+    </GlowBackground>
   );
 }
