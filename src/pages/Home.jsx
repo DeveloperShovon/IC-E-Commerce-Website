@@ -19,7 +19,7 @@ export default function Home() {
         <PopularCategories />
       </section>
 
-      <section className="max-w-7xl container mx-auto m-auto ">
+      <section className="max-w-9xl container mx-auto m-auto ">
         <DailyBestSells />
       </section>
 

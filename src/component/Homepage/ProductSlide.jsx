@@ -8,6 +8,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/cartSlice";
+
+
+
 export default function ProductSlide() {
     const [product, setProduct] = useState([]);
     const dispatch = useDispatch();
@@ -26,25 +29,18 @@ export default function ProductSlide() {
 
         fetchProduct();
     }, []);
-    
+
     return (
         <>
             <Swiper
                 slidesPerView={2}
                 spaceBetween={10}
                 breakpoints={{
-                    600:{
-                        slidesPerView: 3,
-                        spaceBetween: 15,  
-                    },
-                     1024:{
-                        slidesPerView: 4,
-                        spaceBetween: 20,  
-                    }
+                    600: { slidesPerView: 3, spaceBetween: 15 },
+                    1024: { slidesPerView: 4, spaceBetween: 20 }
                 }}
                 navigation={true}
                 pagination={{ type: 'fraction' }}
-                 
                 modules={[Pagination, Navigation]}
                 className="mySwiper">
                 {product.map((item) => (
@@ -86,6 +82,7 @@ export default function ProductSlide() {
                             className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-sm transition">
                             Add
                         </button>
+                        
                     </SwiperSlide>
                 ))}
             </Swiper>

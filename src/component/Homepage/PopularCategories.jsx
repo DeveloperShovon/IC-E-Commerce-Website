@@ -37,10 +37,10 @@ export default function PopularCategories() {
           categories.map((category) => (
             <div 
               key={category.id} 
-              className="w-35 p-4 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-50 flex flex-col items-center sm:w-48 cursor-pointer  "
+              className="w-35 p-4 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-50 flex flex-col items-center sm:w-48 cursor-pointer hover:scale-102 transform-border hover:border-red-300 "
             >
               <div className="w-24 h-24 bg-yellow-50 rounded-full flex items-center justify-center mb-4">
-                <img 
+                <img  
                   src={category.img} 
                   alt={category.title} 
                   className="w-16 h-16 object-contain"

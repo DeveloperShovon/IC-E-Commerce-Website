@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux"
 import { addToCart } from "../../features/cartSlice"
 import { useGetProductsQuery } from "../../features/apiSlice";
+import Button from "../../Kit/Button";
 
 
 
@@ -41,7 +42,7 @@ export default function ProductList() {
       
       {/* Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        
+         <Button/>
         {products.map((product) => (
           <div
             key={product.id}
