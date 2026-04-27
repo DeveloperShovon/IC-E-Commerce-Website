@@ -2,6 +2,7 @@ import NavLogo from "../assets/nav/NavLogo-img.png";
 import { useState } from "react";
 import { useAddProductMutation } from "../features/apiSlice";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 export default function AddProduct() {
 
@@ -29,7 +30,11 @@ const [product, setProduct] = useState({
     e.preventDefault();
     
     addProduct(product)
-    
+
+    if(product) {
+      toast("Product uploaded successfully!");
+      
+    }
 
     setProduct({
       
@@ -42,6 +47,26 @@ const [product, setProduct] = useState({
    
   }
 
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "foodzy");
+    data.append("cloud_name", "dyzb1b2zz");
+
+    const res = await fetch(`https://api.cloudinary.com/v1_1/dyzb1b2zz/image/upload`, {
+      method: "POST",
+      body: data
+    });
+    const imgData = await res.json();
+    console.log(imgData.secure_url);
+    setProduct({
+      ...product,
+      image: imgData.secure_url
+
+    })
+
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
@@ -85,10 +110,9 @@ const [product, setProduct] = useState({
               
                 <input
                   name="image"
-                  type="text"
+                  type="file"
                   placeholder="Enter image URL"
-                  value={product.image}
-                  onChange= {handleChange}
+                  onChange={handleImageChange}
                   className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
              

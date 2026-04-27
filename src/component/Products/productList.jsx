@@ -1,39 +1,38 @@
-import { useDispatch } from "react-redux"
-import { addToCart } from "../../features/cartSlice"
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../features/cartSlice";
 import { useGetProductsQuery } from "../../features/apiSlice";
 import Button from "../../Kit/Button";
-
-
-
-
-
+import { toast } from "react-toastify";
+import Loader from "../../Kit/Loading";
 
 export default function ProductList() {
-
-   const dispatch = useDispatch()
+  const dispatch = useDispatch();
   //  const [products, setProducts] = useState([]);
 
- const { data } = useGetProductsQuery();
+  const { data } = useGetProductsQuery();
   const products = data ?? [];
   console.log(data);
-     
-    //  async function fetchPost() {
-    //    setLoading(true);
-    //    const { data, error } = await supabase.from("products").select("*");
-    //    if (error) {
-    //      console.error("Error fetching products:", error);
-    //    } 
-    //    else {
-    //      setProducts(data);
-    //      setLoading(false);
-    //    }
-       
-    //  }
-   
-    //  useEffect(() => {
-    //    fetchPost();
-    //  }, []);
-    //  console.log(loading);
+  if (!data) {
+    return <Loader />;
+  }
+
+  //  async function fetchPost() {
+  //    setLoading(true);
+  //    const { data, error } = await supabase.from("products").select("*");
+  //    if (error) {
+  //      console.error("Error fetching products:", error);
+  //    }
+  //    else {
+  //      setProducts(data);
+  //      setLoading(false);
+  //    }
+
+  //  }
+
+  //  useEffect(() => {
+  //    fetchPost();
+  //  }, []);
+  //  console.log(loading);
 
   return (
     
@@ -42,7 +41,6 @@ export default function ProductList() {
       
       {/* Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-         <Button/>
         {products.map((product) => (
           <div
             key={product.id}
@@ -57,9 +55,7 @@ export default function ProductList() {
             </div>
 
             {/* Title */}
-            <h4 className="text-sm font-semibold mb-2">
-              {product.title}
-            </h4>
+            <h4 className="text-sm font-semibold mb-2">{product.title}</h4>
 
             {/* Rating */}
             <p className="text-yellow-400 text-sm mb-2">
@@ -79,16 +75,24 @@ export default function ProductList() {
             </div>
 
             {/* Add Button */}
-            
-            <button onClick={()=> dispatch(addToCart(product))} className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-sm transition">
+
+            {/* <button onClick={()=> dispatch(addToCart(product))} className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-sm transition">
               Add
-            </button>
-            
-           
+            </button> */}
+
+            <div className="  flex items-center justify-center px-4 py-2">
+
+
+<Button
+  onClick={() => {
+    dispatch(addToCart(product));
+    toast.success("Item added to cart 🛒");
+  }}
+/>
+            </div>
           </div>
         ))}
-
       </div>
     </div>
-  )
+  );
 }
