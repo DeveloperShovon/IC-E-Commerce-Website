@@ -13,7 +13,7 @@ export default function DailyBestSells() {
                     <img className='w-full md:w-auto ' src={divbanner}alt="" />
                 </div>
                 {/* right part */}
-                <div className='p-3 absolute bottom-[50px] left-2 -translate-x-1/2 w-[90%]  col-span-12 md:static md: translate-x-0 md:col-span-18 flex items-center justify-center'>
+                <div className='p-3 px-1 absolute bottom-[50px] left-2 -translate-x-1/2 w-[90%]  col-span-12 md:static md: translate-x-0 md:col-span-18 flex items-center justify-center'>
                     <ProductSlide/>
                 </div>
             </div>

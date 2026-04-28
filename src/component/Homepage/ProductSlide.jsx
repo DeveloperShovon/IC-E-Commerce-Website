@@ -8,11 +8,14 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/cartSlice";
-
+import BestSellButton from "../../Kit/BestSellButton"
+import { toast } from "react-toastify";
+import Loader from "../../Kit/Loading";
 
 
 export default function ProductSlide() {
     const [product, setProduct] = useState([]);
+
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchProduct = async () => {
@@ -20,14 +23,18 @@ export default function ProductSlide() {
                 .from("products")
                 .select("*")
                 .limit(6);
-            if (error) {
-                console.error("Error fetching products:", error);
-            } else {
+            if (error && !data) {
+                <Loader />;
+                toast.error("Failed to fetch products");
+            } else if (data.length !== 0) {
                 setProduct(data);
-            }
+            } 
+            
+
         };
 
         fetchProduct();
+        
     }, []);
 
     return (
@@ -40,7 +47,7 @@ export default function ProductSlide() {
                     1024: { slidesPerView: 4, spaceBetween: 20 }
                 }}
                 navigation={true}
-                pagination={{ type: 'fraction' }}
+                
                 modules={[Pagination, Navigation]}
                 className="mySwiper">
                 {product.map((item) => (
@@ -77,11 +84,21 @@ export default function ProductSlide() {
 
                         {/* Add Button */}
 
-                        <button
+                        <div className="">
+                            <BestSellButton 
+                            
+                            onClick={() => {
+                                dispatch(addToCart(item));
+                                toast.success("Item added to cart 🛒");
+                            }}
+                            />
+                        </div>
+
+                        {/* <button
                             onClick={() => dispatch(addToCart(item))}
                             className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-sm transition">
                             Add
-                        </button>
+                        </button> */}
                         
                     </SwiperSlide>
                 ))}
