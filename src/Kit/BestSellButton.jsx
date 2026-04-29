@@ -40,11 +40,11 @@ const StyledWrapper = styled.div`
   }
 
   .cssbuttons-io-button:hover {
-    box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
+    box-shadow: 0 0.5em 1.5em -0.5em #ba311998;
   }
 
   .cssbuttons-io-button:active {
-    box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+    box-shadow: 0 0.3em 1em -0.5em #a7431498;
   }`;
 
 export default Button;

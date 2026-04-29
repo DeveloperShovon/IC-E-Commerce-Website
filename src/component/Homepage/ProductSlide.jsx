@@ -39,70 +39,74 @@ export default function ProductSlide() {
 
     return (
         <>
-            <Swiper
-                slidesPerView={2}
-                spaceBetween={10}
-                breakpoints={{
-                    600: { slidesPerView: 3, spaceBetween: 15 },
-                    1024: { slidesPerView: 4, spaceBetween: 20 }
-                }}
-                navigation={true}
-                
-                modules={[Pagination, Navigation]}
-                className="mySwiper">
-                {product.map((item) => (
-                    <SwiperSlide
-                        key={item.id}
-                        className="relative bg-white rounded-xl p-4 shadow-lg hover:shadow-lg transition duration-300">
-                        <div className="flex justify-center mb-4">
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                className="h-32 object-contain"
-                            />
-                        </div>
+<Swiper
 
-                        {/* Title */}
-                        <h4 className="text-sm font-semibold mb-2">{item.title}</h4>
+  slidesPerView={2}
+  spaceBetween={12}
+  breakpoints={{
+    600: { slidesPerView: 3, spaceBetween: 16 },
+    1024: { slidesPerView: 4, spaceBetween: 20 }
+  }}
+  navigation={true}
+  modules={[Pagination, Navigation]}
+  className="mySwiper "
+>
+  {product.map((item) => (
+    <SwiperSlide
+    className="py-5 "
+    key={item.id}>
+      
+      <div className="h-full flex flex-col justify-between bg-white rounded-2xl p-4 shadow-md hover:shadow-xl transition duration-300 group">
+        
+        {/* Image */}
+        <div className="flex justify-center mb-4">
+          <img
+            src={item.image}
+            alt={item.title}
+            className="h-32 w-full object-contain group-hover:scale-105 transition"
+          />
+        </div>
 
-                        {/* Rating */}
-                        <p className="text-yellow-400 text-sm mb-2">
-                            ★★★★☆ <span className="text-gray-500">(4.0)</span>
-                        </p>
+        {/* Content */}
+        <div className="flex-1 flex flex-col">
+          
+          {/* Title */}
+          <h4 className="text-sm font-semibold mb-2 line-clamp-2 min-h-[40px]">
+            {item.title}
+          </h4>
 
-                        {/* Price */}
-                        <div className="flex items-center justify-between mb-3">
-                            <div>
-                                <span className="  text-green-600 font-bold">
-                                    {item.price}$
-                                </span>
-                                <span className=" text-gray-400 line-through ml-2 text-sm">
-                                    {item.oldPrice}
-                                </span>
-                            </div>
-                        </div>
+          {/* Rating */}
+          <p className="text-yellow-400 text-sm mb-2">
+            ★★★★☆ <span className="text-gray-500">(4.0)</span>
+          </p>
 
-                        {/* Add Button */}
+          {/* Price */}
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <span className="text-green-600 font-bold">
+                {item.price}$
+              </span>
+              <span className="text-gray-400 line-through ml-2 text-sm">
+                {item.oldPrice}
+              </span>
+            </div>
+          </div>
 
-                        <div className="">
-                            <BestSellButton 
-                            
-                            onClick={() => {
-                                dispatch(addToCart(item));
-                                toast.success("Item added to cart 🛒");
-                            }}
-                            />
-                        </div>
+        </div>
 
-                        {/* <button
-                            onClick={() => dispatch(addToCart(item))}
-                            className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-sm transition">
-                            Add
-                        </button> */}
-                        
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+        {/* Button (always bottom) */}
+        <BestSellButton 
+          onClick={() => {
+            dispatch(addToCart(item));
+            toast.success("Item added to cart 🛒");
+          }}
+        />
+
+      </div>
+
+    </SwiperSlide>
+  ))}
+</Swiper>
         </>
     );
 }

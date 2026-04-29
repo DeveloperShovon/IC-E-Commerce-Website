@@ -29,7 +29,7 @@ export default function SpecialDishes() {
   const handleLike = (id) => {
     setLikedProducts((prev) => ({
       ...prev,
-      [id]: !prev[id], //as like {1: true, 2: false} then click on 1 then it will be like {1: false, 2: false}
+      [id]: !prev[id], //as like - {1: true, 2: false} then click on 1 then it will be like {1: false, 2: false}
     }));
   };
   
@@ -42,7 +42,7 @@ export default function SpecialDishes() {
           Standout Dishes <br /> From Our Menu
         </h1>
 
-        <div className="flex gap-4 py-4 ">
+        <div className="flex gap-4  ">
           <Swiper
           slidesPerView={1}
             spaceBetween={10}
@@ -71,15 +71,15 @@ export default function SpecialDishes() {
             {products.map((product) => (
               <SwiperSlide>
 
-                <div key={product.id} className="flex gap-4">
-              <div className=" shadow-2xl shadow-black-500  rounded-xl  relative hover:scale-101  duration-50">
+                <div key={product.id} className="flex gap-4 py-5">
+              <div className=" shadow-lg shadow-black-500  rounded-xl  relative hover:scale-101  duration-50">
                 <div className="py-5">
                   <button
                     onClick={() => handleLike(product.id)}
                     className=" m-0 p-4 bg-red-500 text-white text-xl rounded-br-3xl">
                     {likedProducts[product.id] ?
-                      <CiHeart />
-                    : <FaHeart />}
+                      <FaHeart />
+                    : <CiHeart />}
                   </button>
                   <div className="flex flex-col items-center gap-4 p-4">
                     <img

@@ -4,21 +4,34 @@ export default function DailyBestSells() {
 
   return (
     <div>
-        <section>
-            <div >
-                <h4 className='p-6 font-bold text-2xl text-gray-700'>Daily Best Sells</h4>
-                <div className='relative grid grid-cols-1 md:grid-cols-24 gap-4'>
-                 {/* left part div banner*/}
-                <div className='  col-span-12 md:col-span-6'>
-                    <img className='w-full md:w-auto ' src={divbanner}alt="" />
-                </div>
-                {/* right part */}
-                <div className='p-3 px-1 absolute bottom-[50px] left-2 -translate-x-1/2 w-[90%]  col-span-12 md:static md: translate-x-0 md:col-span-18 flex items-center justify-center'>
-                    <ProductSlide/>
-                </div>
-            </div>
-            </div>
-        </section>
+        <section className="py-6">
+  <div className="max-w-7xl mx-auto px-4">
+    
+    <h4 className="mb-6 font-bold text-2xl text-gray-700">
+      Daily Best Sells
+    </h4>
+
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
+      
+      {/* Left Banner */}
+      <div className="w-full flex justify-center md:justify-start">
+        <img 
+          className="w-full max-w-xs md:max-w-full object-cover rounded-xl" 
+          src={divbanner} 
+          alt="banner"
+        />
+      </div>
+
+      {/* Right Product Slider */}
+      <div className="md:col-span-3 flex justify-center">
+        <div className="w-full ">
+          <ProductSlide />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
       
     </div>
   )
