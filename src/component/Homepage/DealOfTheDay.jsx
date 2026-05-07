@@ -1,7 +1,8 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import { supabase } from "../../createClint";
 import { addToCart } from "../../features/cartSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 
 export default function DealOfTheDay() {
@@ -29,19 +30,19 @@ export default function DealOfTheDay() {
       <div>
         <h1 className="py-4 font-bold text-2xl text-gray-800">Deals Of The Day</h1>
         <div  >
-          <div className="grid grid-cols-1 my-6 md:grid-cols-2 lg:grid-cols-4 gap-20">
+          <div className="grid grid-cols-1 my-6 md:grid-cols-2 lg:grid-cols-4 gap-20 ">
             {deals.map((deal) => (
-              <div key={deal.id} className="relative w-[300px] mx-auto">
+              <div key={deal.id} className=" group  relative w-[300px] mx-auto hover:shadow-2xl">
                 {/* Image */}
                 <img
                   src={deal.image}
                   alt={deal.title}
-                  className="rounded-xl w-full h-[220px] object-cover"
+                  className="rounded-xl w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-102"
                 />
 
                 {/* Overlay Card */}
-                <div className="absolute bottom-[-40px] left-1/2 -translate-x-1/2 w-[90%] bg-white p-4 rounded-xl shadow-xl">
-                  <h2 className="text-gray-800 font-semibold text-sm">
+                <div className="absolute bottom-[-40px] left-1/2 -translate-x-1/2 w-[90%] bg-white p-4 rounded-xl shadow-xl bg-linear-to-r from-lime-50 to-slate-50">
+                  <h2 className="text-gray-800 font-semibold text-sm md:text-base">
                     {deal.title}
                   </h2>
 
@@ -64,8 +65,11 @@ export default function DealOfTheDay() {
                     </div>
 
                     <button
-                    onClick={dispatch(addToCart(deal))} 
-                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg text-sm">
+                    onClick={() => {
+                      dispatch(addToCart(deal));
+                      toast.success("Item added to cart 🛒");  
+                    }}
+                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg text-sm cursor-pointer transition duration-300">
                       Add
                     </button>
                   </div>
