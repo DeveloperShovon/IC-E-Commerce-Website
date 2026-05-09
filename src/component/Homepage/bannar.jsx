@@ -1,23 +1,30 @@
-export default function Banner({ imgUrl, subtitle, title, rightContent }) {
+import React from 'react'
+import containerImg from "../../assets/ProductsImg/Container.png"
+import {motion} from "framer-motion"
+
+const bannar = () => {
   return (
-    <div className="w-full ">
-      <section
-        className=" grid grid-cols-1   items-center py-4 md:p-12 w-full bg-cover  bg-no-repeat"
-        style={{ backgroundImage: `url('${imgUrl}')` }}
-        >
-      
-        <div className="py-20 md:py-40 px-4 md:px-12 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className=" text-center md:text-left">
-          <h1 className="text-2xl md:text-3xl font-bold py-4 ">{title}</h1>
-          <p className="text-gray-600 py-4 md:text-lg">{subtitle}</p>
-          <button className="bg-red-500 md:my-4 hover:bg-red-600 text-white py-2 px-6 rounded-lg">
-            Subscribe
-          </button>
-        </div>
-        <div>{rightContent}</div>
-        </div>
-      </section>
-    </div>
-  );
+<>
+        <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2}}
+        className= "  bg- bg-center bg-cover h-[400px] w-full flex items-center justify-center"style={{ backgroundImage: `url(${containerImg})`}}>
+
+            <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2}}
+            
+            >
+              <h1 className=' text-3xl md:text-4xl font-bold font-serif text-gray-800 text-center '>The best way to stuff <br /> your wallet</h1>
+              <p className='text-lg text-gray-600 text-center pt-3 '>Sign up for the daily newsletter</p>
+
+              <button className='bg-[#3aa856] text-white px-4 py-2 rounded mt-4 block mx-auto hover:bg-[#2d8a44]'>Subscribe</button>
+            </motion.div>
+    </motion.div>
+</>
+  )
 }
-  
+
+export default bannar

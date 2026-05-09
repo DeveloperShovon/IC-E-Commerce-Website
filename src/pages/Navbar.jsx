@@ -104,7 +104,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {open && (
-          <div className="md:hidden px-4 pb-4 space-y-3 text-gray-700 font-medium z-50  ">
+          <div className="md:hidden px-4 pb-4 space-y-3 text-gray-700 font-medium z-50   ">
             <div>
               <Link to={"/home"}>Home</Link>
             </div>
