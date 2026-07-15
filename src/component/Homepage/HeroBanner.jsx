@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import banner from "../../assets/home/banner.png";
-
+import banner2 from "../../assets/home/banner2.png";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -11,14 +11,14 @@ const slides = [
     subTitle: "First 10 sales 10% offer",
     title: "Enjoying grocery",
     button: "Shop now",
-    image: "banner",
+    image: banner,
   },
   {
     id: 2,
-    subTitle: "Fresh organic food",
-    title: "Healthy vegetable",
+    subTitle: "Fresh organic fruits",
+    title: "Healthy fruits",
     button: "Order now",
-    image: "/images/banner2.png",
+    image: banner2,
   },
 ];
 
@@ -35,7 +35,7 @@ export default function HeroBanner() {
           clickable: true,
         }}
         autoplay={{
-          delay: 3000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         loop={true}
@@ -68,7 +68,7 @@ export default function HeroBanner() {
                 <img
                   src={slide.image}
                   alt="banner"
-                  className="relative z-10 w-full max-w-[260px] object-contain transition duration-500 hover:scale-105 sm:max-w-[350px] md:max-w-[500px] lg:max-w-[600px]"
+                  className="relative z-10 w-full  object-contain transition duration-500 hover:scale-105 sm:max-w-[350px] md:max-w-[500px] lg:max-w-[600px]"
                 />
               </div>
             </div>
